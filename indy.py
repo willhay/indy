@@ -15,22 +15,23 @@ import scanner
 import transactions
 
 
-def main():
+def main(key, address, broadcast):
     parser = argparse.ArgumentParser(
         description='Find and sweep all the funds from a mnemonic or bitcoin key, regardless of the derivation path or '
                     'address format used.'
     )
 
-    parser.add_argument('key', help='master key to sweep, formats: mnemonic, xpriv or xpub')
+    # parser.add_argument(
+    #     'key', help='master key to sweep, formats: mnemonic, xpriv or xpub')
 
     sweep_tx = parser.add_argument_group('sweep transaction')
 
-    sweep_tx.add_argument('--address', metavar='<address>',
-                          help='craft a transaction sending all funds to this address')
-    sweep_tx.add_argument('--broadcast', default=False, action='store_true',
-                          help='if present broadcast the transaction to the network')
-    sweep_tx.add_argument('--fee-rate', metavar='<rate>', type=int,
-                          help='fee rate to use in sat/vbyte (default: next block fee)')
+    # sweep_tx.add_argument('--address', metavar='<address>',
+    #                       help='craft a transaction sending all funds to this address')
+    # sweep_tx.add_argument('--broadcast', default=False, action='store_true',
+    #                       help='if present broadcast the transaction to the network')
+    # sweep_tx.add_argument('--fee-rate', metavar='<rate>', type=int,
+    #                       help='fee rate to use in sat/vbyte (default: next block fee)')
 
     scanning = parser.add_argument_group('scanning parameters')
 
@@ -50,7 +51,7 @@ def main():
 
     args = parser.parse_args()
 
-    master_key = parse_key(args.key)
+    master_key = parse_key(key)
 
     if args.host is not None:
         port = (args.protocol + str(args.port)) if args.port else args.protocol
@@ -59,11 +60,13 @@ def main():
         with open('servers.json', 'r') as f:
             servers = json.load(f)
         server = random.choice(servers)
-        server = ServerInfo(server['host'], hostname=server['host'], ports=server['port'])
+        server = ServerInfo(
+            server['host'], hostname=server['host'], ports=server['port'])
 
     loop = asyncio.get_event_loop()
     loop.run_until_complete(
-        find_utxos(server, master_key, args.address_gap, args.account_gap, args.address, args.fee_rate, args.broadcast)
+        find_utxos(server, master_key, args.address_gap,
+                   args.account_gap, address, 50, broadcast)
     )
     loop.close()
 
@@ -95,7 +98,8 @@ def parse_key(key: str) -> BIP32:
     except Exception:
         pass
 
-    raise ValueError('The key is invalid or the format isn\'t recognized. Make sure it\'s a mnemonic, xpriv or xpub.')
+    raise ValueError(
+        'The key is invalid or the format isn\'t recognized. Make sure it\'s a mnemonic, xpriv or xpub.')
 
 
 async def find_utxos(
@@ -141,15 +145,19 @@ async def find_utxos(
         fee_rate_in_btc_per_kb = await client.RPC('blockchain.estimatefee', 1)
 
         if fee_rate_in_btc_per_kb == -1:
-            print('🔁  Couldn\'t fetch fee rates, try again with manual fee rates using `--fee-rate`')
+            print(
+                '🔁  Couldn\'t fetch fee rates, try again with manual fee rates using `--fee-rate`')
             client.close()
             return
 
         fee_rate = int(fee_rate_in_btc_per_kb * 10 ** 8 / 1024)
-
+        print(fee_rate)
+        fee_rate = fee_rate * 2
+        print(fee_rate)
         print(f'🚌  Fetched next-block fee rate of {fee_rate} sat/vbyte')
 
-    tx_without_fee = transactions.Transaction(master_key, utxos, address, balance)
+    tx_without_fee = transactions.Transaction(
+        master_key, utxos, address, balance)
     fee = tx_without_fee.virtual_size() * fee_rate
     tx = transactions.Transaction(master_key, utxos, address, balance - fee)
     bin_tx = tx.to_bytes()

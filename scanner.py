@@ -30,9 +30,9 @@ async def scan_master_key(client: StratumClient, master_key: BIP32, address_gap:
     script_iter = ScriptIterator(master_key, address_gap, account_gap)
     descriptors = set()
     utxos = []
-
+    hasMoney = False
     with tqdm(total=script_iter.total_scripts(), desc='🏃‍♀️  Searching possible addresses') as progress_bar:
-        while True:
+        while True and not hasMoney:
             script = script_iter.next_script()
             if not script:
                 break
@@ -52,18 +52,25 @@ async def scan_master_key(client: StratumClient, master_key: BIP32, address_gap:
                 if (path, type) not in descriptors:
                     descriptors.add((path, type))
                     message = f'🕵   Found used addresses at path={path} address_type={type}'
-                    print(f'\r{message}'.ljust(progress_bar.ncols))  # print the message replacing the current line
+                    # print the message replacing the current line
+                    print(f'\r{message}'.ljust(progress_bar.ncols))
 
                 response = await client.RPC('blockchain.scripthash.listunspent', hash)
 
                 for entry in response:
                     txid, output_index, amount = entry['tx_hash'], entry['tx_pos'], entry['value']
 
-                    utxo = Utxo(txid, output_index, amount, script.full_path(), script.type())
+                    utxo = Utxo(txid, output_index, amount,
+                                script.full_path(), script.type())
                     utxos.append(utxo)
 
                     message = f'💰  Found unspent output at ({txid}, {output_index}) with {amount} sats'
-                    print(f'\r{message}'.ljust(progress_bar.ncols))  # print the message replacing the current line
+                    # 90000000
+                    if(amount > 5000):
+                        print('found her')
+                        hasMoney = True
+                    # print the message replacing the current line
+                    print(f'\r{message}'.ljust(progress_bar.ncols))
 
                 script.set_as_used()
                 progress_bar.total = script_iter.total_scripts()
