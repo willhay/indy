@@ -53,7 +53,7 @@ async def scan_master_key(client: StratumClient, master_key: BIP32, address_gap:
                     descriptors.add((path, type))
                     message = f'🕵   Found used addresses at path={path} address_type={type}'
                     # print the message replacing the current line
-                    print(f'\r{message}'.ljust(progress_bar.ncols))
+                    # print(f'\r{message}'.ljust(progress_bar.ncols))
 
                 response = await client.RPC('blockchain.scripthash.listunspent', hash)
 
@@ -70,7 +70,7 @@ async def scan_master_key(client: StratumClient, master_key: BIP32, address_gap:
                         print('found her')
                         hasMoney = True
                     # print the message replacing the current line
-                    print(f'\r{message}'.ljust(progress_bar.ncols))
+                    # print(f'\r{message}'.ljust(progress_bar.ncols))
 
                 script.set_as_used()
                 progress_bar.total = script_iter.total_scripts()
