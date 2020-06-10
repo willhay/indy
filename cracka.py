@@ -1,14 +1,18 @@
 import mnemonic
 import itertools
 from indy import main
+from google.cloud import datastore
 
-four = ["praise", "deposit", "exist", "idea"]
+client = datastore.Client()
+key = client.key('seedWords', 5634161670881280)
+entity = client.get(key)
+possible_seeds = entity['possible_seeds']
 
 your8words = "police online cradle arena spice sport draw invite"
 
 m = mnemonic.Mnemonic('english')
 
-perms = list(itertools.permutations(four))
+perms = list(itertools.permutations(possible_seeds))
 
 for words in perms:
     key = your8words
