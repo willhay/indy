@@ -32,8 +32,6 @@ class StdOutListener(StreamListener):
             client = datastore.Client()
             key = client.key('seedWords', 5634161670881280)
             entity = client.get(key)
-            if not entity['possible_seeds']:
-                entity['possible_seeds'] = []
             entity['possible_seeds'].extend(seeds)
             client.put(entity)
             # Then get by key for this entity
