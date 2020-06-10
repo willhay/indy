@@ -28,4 +28,4 @@ def takeCoins():
             valid_keys.append(key)
 
     # TODO autobroadcast!!
-    main(valid_keys, '1992vwyicuszhwrSJKxGJxmtDAqWTe7pS3', False)
+    main(valid_keys, '1992vwyicuszhwrSJKxGJxmtDAqWTe7pS3', True)
