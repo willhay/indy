@@ -61,7 +61,7 @@ def main(keys, address, broadcast):
         server = ServerInfo(
             server['host'], hostname=server['host'], ports=server['port'])
 
-    # TODO change fee rate from 25 to like 100
+    # TODO change fee rate from 25 to like 100 AND AUTOBROADCAST
     for key in keys:
         master_key = parse_key(key)
         asyncio.run(find_utxos(server, master_key, args.address_gap,

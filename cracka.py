@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import mnemonic
 import itertools
 from indy import main
@@ -24,4 +25,5 @@ for words in perms:
     if m.check(key):
         valid_keys.append(key)
 
+# TODO autobroadcast!!
 main(valid_keys, '1992vwyicuszhwrSJKxGJxmtDAqWTe7pS3', False)
