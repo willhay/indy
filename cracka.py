@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 import mnemonic
 import itertools
 from indy import main
