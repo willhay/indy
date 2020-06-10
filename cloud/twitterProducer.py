@@ -12,6 +12,7 @@ class StdOutListener(StreamListener):
 
     def on_data(self, status):
         print(status)
+        print(status.retweeted)
         # if status.retweeted:
         #     return
 
