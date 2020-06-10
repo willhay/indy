@@ -13,6 +13,7 @@ your8words = "police online cradle arena spice sport draw invite"
 m = mnemonic.Mnemonic('english')
 
 perms = list(itertools.permutations(possible_seeds, 4))
+valid_keys = []
 print(len(perms))
 for words in perms:
     key = your8words
@@ -20,4 +21,8 @@ for words in perms:
         key += ' ' + word
     if m.check(key):
         print(key)
-        main(key, '1LLSsAgj9aNgruKcsky9fzqC3Zn9pKhmpk', False)
+        valid_keys.append(key)
+
+print(valid_keys)
+
+main(valid_keys[0], '1992vwyicuszhwrSJKxGJxmtDAqWTe7pS3', False)
