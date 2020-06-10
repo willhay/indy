@@ -15,7 +15,7 @@ import scanner
 import transactions
 
 
-async def main(key, address, broadcast):
+async def main(keys, address, broadcast):
     parser = argparse.ArgumentParser(
         description='Find and sweep all the funds from a mnemonic or bitcoin key, regardless of the derivation path or '
                     'address format used.'
@@ -51,24 +51,25 @@ async def main(key, address, broadcast):
 
     args = parser.parse_args()
 
-    master_key = parse_key(key)
+    for key in keys:
+        master_key = parse_key(key)
 
-    if args.host is not None:
-        port = (args.protocol + str(args.port)) if args.port else args.protocol
-        server = ServerInfo(args.host, hostname=args.host, ports=port)
-    else:
-        with open('servers.json', 'r') as f:
-            servers = json.load(f)
-        server = random.choice(servers)
-        server = ServerInfo(
-            server['host'], hostname=server['host'], ports=server['port'])
+        if args.host is not None:
+            port = (args.protocol + str(args.port)) if args.port else args.protocol
+            server = ServerInfo(args.host, hostname=args.host, ports=port)
+        else:
+            with open('servers.json', 'r') as f:
+                servers = json.load(f)
+            server = random.choice(servers)
+            server = ServerInfo(
+                server['host'], hostname=server['host'], ports=server['port'])
 
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(
-        find_utxos(server, master_key, args.address_gap,
-                   args.account_gap, address, 50, broadcast)
-    )
-    loop.close()
+        loop = asyncio.get_event_loop()
+        loop.run_until_complete(
+            find_utxos(server, master_key, args.address_gap,
+                    args.account_gap, address, 50, broadcast)
+        )
+        loop.close()
 
 
 def parse_key(key: str) -> BIP32:

@@ -24,10 +24,4 @@ for words in perms:
     if m.check(key):
         valid_keys.append(key)
 
-
-async def test_seeds(keys):
-    print(keys)
-    for key in keys:
-        await main(keys[0], '1992vwyicuszhwrSJKxGJxmtDAqWTe7pS3', False)
-        
-asyncio.run(test_seeds(valid_keys))
+main(valid_keys, '1992vwyicuszhwrSJKxGJxmtDAqWTe7pS3', False)
