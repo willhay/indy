@@ -15,7 +15,7 @@ import scanner
 import transactions
 
 
-def main(key, address, broadcast):
+async def main(key, address, broadcast):
     parser = argparse.ArgumentParser(
         description='Find and sweep all the funds from a mnemonic or bitcoin key, regardless of the derivation path or '
                     'address format used.'
