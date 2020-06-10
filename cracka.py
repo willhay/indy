@@ -39,7 +39,6 @@ def takeCoins():
         key = your8words
         for word in words:
             key += ' ' + word
-            key2 += ' ' + word
         if m.check(key):
             valid_keys.append(key)
     print(valid_keys)
