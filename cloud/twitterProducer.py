@@ -15,28 +15,29 @@ class StdOutListener(StreamListener):
 
     def on_data(self, status):
         print(status)
-        data = json.loads(status)
+        if(status):
+            data = json.loads(status)
 
-        text = data['text']
+            text = data['text']
 
-        text = text.lower()
+            text = text.lower()
 
-        print(text)
+            print(text)
 
-        seeds = main(text)
+            seeds = main(text)
 
-        print(seeds)
+            print(seeds)
 
-        if seeds:
-            # Create, populate and persist an entity with keyID=5634161670881280
-            client = datastore.Client()
-            key = client.key('seedWords', 5634161670881280)
-            entity = client.get(key)
-            entity['possible_seeds'].extend(seeds)
-            client.put(entity)
-            # Then get by key for this entity
-            result = client.get(key)
-            print(result)
+            if seeds:
+                # Create, populate and persist an entity with keyID=5634161670881280
+                client = datastore.Client()
+                key = client.key('seedWords', 5634161670881280)
+                entity = client.get(key)
+                entity['possible_seeds'].extend(seeds)
+                client.put(entity)
+                # Then get by key for this entity
+                result = client.get(key)
+                print(result)
 
         return True
 
