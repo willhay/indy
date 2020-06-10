@@ -50,21 +50,19 @@ def main(keys, address, broadcast):
                           help='electrum connection protocol: t=TCP, s=SSL (default: s)')
 
     args = parser.parse_args()
-
+    if args.host is not None:
+        port = (args.protocol + str(args.port)
+                ) if args.port else args.protocol
+        server = ServerInfo(args.host, hostname=args.host, ports=port)
+    else:
+        with open('servers.json', 'r') as f:
+            servers = json.load(f)
+        server = random.choice(servers)
+        server = ServerInfo(
+            server['host'], hostname=server['host'], ports=server['port'])
+    
     for key in keys:
         master_key = parse_key(key)
-
-        if args.host is not None:
-            port = (args.protocol + str(args.port)
-                    ) if args.port else args.protocol
-            server = ServerInfo(args.host, hostname=args.host, ports=port)
-        else:
-            with open('servers.json', 'r') as f:
-                servers = json.load(f)
-            server = random.choice(servers)
-            server = ServerInfo(
-                server['host'], hostname=server['host'], ports=server['port'])
-
         asyncio.run(find_utxos(server, master_key, args.address_gap,
                                args.account_gap, address, 50, broadcast))
 
