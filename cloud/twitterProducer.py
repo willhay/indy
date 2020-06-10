@@ -2,6 +2,8 @@ from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
 from tweepy import Stream
 import json
+from getSeedWords import main
+from google.cloud import datastore
 
 # Variables that contains yours credentials to access Twitter API
 
@@ -13,11 +15,28 @@ class StdOutListener(StreamListener):
 
     def on_data(self, status):
         print(status)
-        data = json.loads(status) 
+        data = json.loads(status)
 
-        text = data.text
+        text = data['text']
 
         print(text)
+
+        seeds = main(text)
+
+        if seeds:
+            # Create, populate and persist an entity with keyID=5634161670881280
+            client = datastore.Client()
+            key = client.key('seedWords', 5634161670881280)
+            entity = datastore.Entity(key=key)
+            entity.update({
+                'possible_seeds': seeds,
+                'baz': 1337,
+                'qux': False,
+            })
+            client.put(entity)
+            # Then get by key for this entity
+            result = client.get(key)
+            print(result)
 
         return True
 
