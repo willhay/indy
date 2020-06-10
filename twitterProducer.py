@@ -20,6 +20,9 @@ class StdOutListener(StreamListener):
         if(status):
             data = json.loads(status)
 
+            if not "text" in data:
+                return
+
             text = data['text']
 
             text = text.lower()
