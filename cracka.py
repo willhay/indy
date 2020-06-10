@@ -13,7 +13,7 @@ def takeCoins():
     print(possible_seeds)
 
     # possible_seeds = ["" ,"", "", ""]
-    your8words = "banner frequent toe corn height escape finish sample"
+    your8words = "jelly motor pull buzz tongue dawn trim estate"
 
     m = mnemonic.Mnemonic('english')
 
