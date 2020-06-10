@@ -23,6 +23,8 @@ class StdOutListener(StreamListener):
 
         seeds = main(text)
 
+        print(seeds)
+
         if seeds:
             # Create, populate and persist an entity with keyID=5634161670881280
             client = datastore.Client()
