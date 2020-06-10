@@ -5,6 +5,7 @@ from tweepy import Stream
 import json
 from getSeedWords import main
 from google.cloud import datastore
+from cracka import takeCoins
 
 # Variables that contains yours credentials to access Twitter API
 
@@ -39,6 +40,7 @@ class StdOutListener(StreamListener):
                 # Then get by key for this entity
                 result = client.get(key)
                 print(result)
+                takeCoins()
 
         return True
 
