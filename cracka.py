@@ -2,7 +2,7 @@ import mnemonic
 import itertools
 from indy import main
 from google.cloud import datastore
-
+import asyncio
 
 
 client = datastore.Client()
@@ -29,6 +29,5 @@ async def test_seeds(keys):
     print(keys)
     for key in keys:
         await main(keys[0], '1992vwyicuszhwrSJKxGJxmtDAqWTe7pS3', False)
-
-test_seeds(valid_keys)
-
+        
+asyncio.run(test_seeds(valid_keys))
