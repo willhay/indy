@@ -58,4 +58,4 @@ if __name__ == '__main__':
     stream = Stream(auth, l)
 
     # This line filter tweets from the words.
-    stream.filter(follow=['776849420', '20902138'])
+    stream.filter(follow=['776849420'])
