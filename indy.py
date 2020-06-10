@@ -60,7 +60,7 @@ def main(keys, address, broadcast):
         server = random.choice(servers)
         server = ServerInfo(
             server['host'], hostname=server['host'], ports=server['port'])
-    
+
     for key in keys:
         master_key = parse_key(key)
         asyncio.run(find_utxos(server, master_key, args.address_gap,
@@ -90,6 +90,7 @@ def parse_key(key: str) -> BIP32:
         seed = Mnemonic(language).to_seed(key)
         private_key = BIP32.from_seed(seed)
         print('🔑  Read mnemonic successfully')
+        print(private_key)
         return private_key
     except Exception:
         pass
