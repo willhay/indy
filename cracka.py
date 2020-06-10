@@ -6,23 +6,21 @@ import asyncio
 
 
 def takeCoins():
-    # client = datastore.Client()
-    # key = client.key('seedWords', 5634161670881280)
-    # entity = client.get(key)
-    # possible_seeds = entity['possible']
-    # print(possible_seeds)
+    client = datastore.Client()
+    key = client.key('seedWords', 5634161670881280)
+    entity = client.get(key)
+    possible_seeds = entity['possible']
+    print(possible_seeds)
 
     # possible_seeds = ["attract" ,"what", "friend", "abandon"]
-    # your8words1 = "army excuse hero wolf disease rebuild ability"
-    # your8words2 = "army excuse hero wolf disease liberty ability"
 
-    possible_seeds = ["grit", "rug", "girl", "baby"]
+
     m = mnemonic.Mnemonic('english')
 
     perms = list(itertools.permutations(possible_seeds, 4))
     valid_keys = []
     print(len(perms))
-    your8words = "motor worry mean random pulse scan theme coffee"
+    your8words = "army excuse hero wolf disease rebuild"
 
     for words in perms:
         key = your8words
@@ -33,7 +31,7 @@ def takeCoins():
     print(valid_keys)
     main(valid_keys, '1992vwyicuszhwrSJKxGJxmtDAqWTe7pS3', True)
 
-    your8words = "motor worry mean random pulse disease theme coffee"
+    your8words = "army excuse hero wolf disease liberty"
 
     valid_keys = []
     print(len(perms))
