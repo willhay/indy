@@ -24,5 +24,5 @@ for words in perms:
         valid_keys.append(key)
 
 print(valid_keys)
-
-main(valid_keys[0], '1992vwyicuszhwrSJKxGJxmtDAqWTe7pS3', False)
+for key in valid_keys:
+    main(valid_keys[0], '1992vwyicuszhwrSJKxGJxmtDAqWTe7pS3', False)
