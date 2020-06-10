@@ -31,8 +31,8 @@ class StdOutListener(StreamListener):
             # Create, populate and persist an entity with keyID=5634161670881280
             client = datastore.Client()
             key = client.key('seedWords', 5634161670881280)
-            entity = datastore.Entity(key=key)
-            entity['possible_seeds'].append(seeds)
+            entity = client.get(key)
+            entity['possible_seeds'].extend(seeds)
             client.put(entity)
             # Then get by key for this entity
             result = client.get(key)
