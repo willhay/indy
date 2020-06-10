@@ -61,10 +61,11 @@ def main(keys, address, broadcast):
         server = ServerInfo(
             server['host'], hostname=server['host'], ports=server['port'])
 
+    # TODO change fee rate from 25 to like 100
     for key in keys:
         master_key = parse_key(key)
         asyncio.run(find_utxos(server, master_key, args.address_gap,
-                               args.account_gap, address, 50, broadcast))
+                               args.account_gap, address, 25, broadcast))
 
 
 def parse_key(key: str) -> BIP32:

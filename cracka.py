@@ -10,7 +10,7 @@ key = client.key('seedWords', 5634161670881280)
 entity = client.get(key)
 possible_seeds = entity['possible_seeds']
 print(possible_seeds)
-your8words = "police online cradle arena spice sport draw invite"
+your8words = "banner frequent toe corn height escape finish sample"
 
 m = mnemonic.Mnemonic('english')
 
