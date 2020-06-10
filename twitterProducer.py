@@ -35,7 +35,7 @@ class StdOutListener(StreamListener):
                 client = datastore.Client()
                 key = client.key('seedWords', 5634161670881280)
                 entity = client.get(key)
-                entity['possible'].extend(seeds)
+                entity['possible_real'].extend(seeds)
                 client.put(entity)
                 # Then get by key for this entity
                 result = client.get(key)
@@ -60,4 +60,4 @@ if __name__ == '__main__':
     stream = Stream(auth, l)
 
     # This line filter tweets from the words.
-    stream.filter(follow=['776849420', '20902138'])
+    stream.filter(follow=['20902138'])
