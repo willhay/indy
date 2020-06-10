@@ -4,6 +4,7 @@ from indy import main
 from google.cloud import datastore
 
 
+
 client = datastore.Client()
 key = client.key('seedWords', 5634161670881280)
 entity = client.get(key)
@@ -23,10 +24,11 @@ for words in perms:
     if m.check(key):
         valid_keys.append(key)
 
-test_seeds(valid_keys)
-
 
 async def test_seeds(keys):
     print(keys)
     for key in keys:
         await main(keys[0], '1992vwyicuszhwrSJKxGJxmtDAqWTe7pS3', False)
+
+test_seeds(valid_keys)
+
