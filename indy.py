@@ -90,7 +90,7 @@ def parse_key(key: str) -> BIP32:
         seed = Mnemonic(language).to_seed(key)
         private_key = BIP32.from_seed(seed)
         print('🔑  Read mnemonic successfully')
-        print(private_key)
+        print(key)
         return private_key
     except Exception:
         pass
