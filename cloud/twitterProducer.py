@@ -19,6 +19,8 @@ class StdOutListener(StreamListener):
 
         text = data['text']
 
+        text = text.lower()
+
         print(text)
 
         seeds = main(text)
@@ -32,8 +34,6 @@ class StdOutListener(StreamListener):
             entity = datastore.Entity(key=key)
             entity.update({
                 'possible_seeds': seeds,
-                'baz': 1337,
-                'qux': False,
             })
             client.put(entity)
             # Then get by key for this entity
