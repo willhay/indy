@@ -1,6 +1,7 @@
 from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
 from tweepy import Stream
+import json
 
 # Variables that contains yours credentials to access Twitter API
 
@@ -12,31 +13,12 @@ class StdOutListener(StreamListener):
 
     def on_data(self, status):
         print(status)
-        print(status.retweeted)
-        # if status.retweeted:
-        #     return
+        data = json.loads(status) 
 
-        # id_str = status.id_str
-        # created = status.created_at
-        # text = status.text
-        # fav = status.favorite_count
-        # name = status.user.screen_name
-        # description = status.user.description
-        # loc = status.user.location
-        # user_created = status.user.created_at
-        # followers = status.user.followers_count
-        # dat = dict(
-        #     id_str=id_str,
-        #     created=created,
-        #     text=text,
-        #     fav_count=fav,
-        #     user_name=name,
-        #     user_description=description,
-        #     user_location=loc,
-        #     user_created=user_created,
-        #     user_followers=followers,
-        # )
-        # print(dat)
+        text = data.text
+
+        print(text)
+
         return True
 
     def on_error(self, status):
