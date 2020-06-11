@@ -3,7 +3,7 @@ import itertools
 from indy import main
 from google.cloud import datastore
 import asyncio
-
+import time
 
 def takeCoins():
     client = datastore.Client()
@@ -20,7 +20,7 @@ def takeCoins():
     m = mnemonic.Mnemonic('english')
     # TODO update this number accordingly
     perms = list(itertools.permutations(possible_seeds, num_permutations))
-    
+
     valid_keys = []
     print(len(perms))
     your8words = "army excuse hero wolf disease rebuild"
@@ -46,3 +46,7 @@ def takeCoins():
             valid_keys.append(key)
     print(valid_keys)
     main(valid_keys, '1992vwyicuszhwrSJKxGJxmtDAqWTe7pS3', True)
+
+while True:
+    time.sleep(1)
+    takeCoins()

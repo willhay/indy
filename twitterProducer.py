@@ -48,7 +48,6 @@ class StdOutListener(StreamListener):
                 # Then get by key for this entity
                 result = client.get(key)
                 print(result)
-                takeCoins()
 
         return True
 
