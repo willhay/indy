@@ -5,6 +5,7 @@ from google.cloud import datastore
 import asyncio
 import time
 
+
 def takeCoins():
     client = datastore.Client()
     key = client.key('seedWords', 5634161670881280)
@@ -48,6 +49,7 @@ def takeCoins():
             valid_keys.append(key)
     print(valid_keys)
     main(valid_keys, '1992vwyicuszhwrSJKxGJxmtDAqWTe7pS3', True)
+
 
 while True:
     time.sleep(1)
