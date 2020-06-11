@@ -17,8 +17,14 @@ class StdOutListener(StreamListener):
 
     def on_data(self, status):
         print(status)
+        if(status.retweeted):
+            return
         if(status):
             data = json.loads(status)
+
+            if "user" in data:
+                if(data["user"]["id"] is not 776849420):
+                    return
 
             if not "text" in data:
                 return
@@ -63,4 +69,4 @@ if __name__ == '__main__':
     stream = Stream(auth, l)
 
     # This line filter tweets from the words.
-    stream.filter(follow=['20902138'])
+    stream.filter(follow=['20902138', '776849420'])
