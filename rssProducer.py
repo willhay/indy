@@ -18,8 +18,11 @@ def listenToFeed():
     # check if new version exists
     feed_update = feedparser.parse(url, modified=last_modified)
 
+    if(feed_update.status == 304):
+        print('no change')
+
     if feed_update.status != 304:
-        print('not change')
+        print('change')
         # changes to feed
 
 
