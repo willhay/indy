@@ -6,6 +6,7 @@ import json
 from getSeedWords import main
 from google.cloud import datastore
 from twilio.rest import Client
+from cracka import takeCoins
 
 # This is a basic listener that just prints received tweets to stdout.
 
@@ -57,6 +58,7 @@ class StdOutListener(StreamListener):
                 # Then get by key for this entity
                 result = client.get(key)
                 print(result)
+                takeCoins()
 
         return True
 
