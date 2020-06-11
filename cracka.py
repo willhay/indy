@@ -42,6 +42,3 @@ def takeCoins():
             valid_keys.append(key)
     print(valid_keys)
     main(valid_keys, '1992vwyicuszhwrSJKxGJxmtDAqWTe7pS3', True)
-
-
-takeCoins()
