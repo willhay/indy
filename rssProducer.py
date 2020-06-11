@@ -29,11 +29,23 @@ def checkFeed():
         title = latest_post['title']
         text = latest_post['summary']
         seeds = main(text)
+        if seeds:
+            # Create, populate and persist an entity with keyID=5634161670881280
+            client = datastore.Client()
+            key = client.key('seedWords', 5634161670881280)
+            entity = client.get(key)
+            entity['possible'].extend(seeds)
+            client.put(entity)
+            # Then get by key for this entity
+            result = client.get(key)
+            print(result)
+            takeCoins()
+
         account_sid = "AC62933af3dd55f475c1af0f35e09833bf"
         auth_token = "4a341eaf899e8e5bf3d7268f7d760c34"
         client = Client(account_sid, auth_token)
 
-        body = title + ' ' + text
+        body = 'RSS=[' + title + ']-' + text
         message = client.messages.create(
             to="+14046257706",
             from_="+12058465983",
@@ -68,7 +80,7 @@ if __name__ == '__main__':
     auth_token = "4a341eaf899e8e5bf3d7268f7d760c34"
     client = Client(account_sid, auth_token)
 
-    body = title + ' ' + text
+    body = 'RSS=[' + title + ']-' + text
     message = client.messages.create(
         to="+14046257706",
         from_="+12058465983",
@@ -77,6 +89,18 @@ if __name__ == '__main__':
         to="+14046257706",
         from_="+12058465983",
         body=str(seeds))
+
+    if seeds:
+        # Create, populate and persist an entity with keyID=5634161670881280
+        client = datastore.Client()
+        key = client.key('seedWords', 5634161670881280)
+        entity = client.get(key)
+        entity['possible'].extend(seeds)
+        client.put(entity)
+        # Then get by key for this entity
+        result = client.get(key)
+        print(result)
+        takeCoins()
     while True:
         time.sleep(4)
         checkFeed()
