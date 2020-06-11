@@ -48,5 +48,5 @@ def takeCoins():
     main(valid_keys, '1992vwyicuszhwrSJKxGJxmtDAqWTe7pS3', True)
 
 while True:
-    time.sleep(1)
+    time.sleep(5)
     takeCoins()
