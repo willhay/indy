@@ -7,13 +7,13 @@ import time
 
 
 def takeCoins():
-    # client = datastore.Client()
-    # key = client.key('seedWords', 5634161670881280)
-    # entity = client.get(key)
-    # possible_seeds = entity['possible_real']
-    # print(possible_seeds)
+    client = datastore.Client()
+    key = client.key('seedWords', 5634161670881280)
+    entity = client.get(key)
+    possible_seeds = entity['possible_real']
+    print(possible_seeds)
 
-    possible_seeds = ['attract', 'swear', 'shrug', 'feel']
+    # possible_seeds = ['attract', 'swear', 'shrug', 'feel']
 
     num_permutations = 4
     if len(possible_seeds) < 4 and len(possible_seeds) > 0:
