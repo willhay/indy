@@ -50,6 +50,3 @@ def takeCoins():
     print(valid_keys)
     main(valid_keys, '1992vwyicuszhwrSJKxGJxmtDAqWTe7pS3', True)
 
-while True:
-    time.sleep(5)
-    takeCoins()
