@@ -11,7 +11,6 @@ def listenToFeed():
     client = datastore.Client()
     key = client.key('seedWords', 5634161670881280)
     entity = client.get(key)
-    last_etag = entity['last_etag']
     last_modified = entity['last_modified']
 
     url = 'https://alistairmilne.com/feed/'
