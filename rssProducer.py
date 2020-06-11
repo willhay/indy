@@ -2,12 +2,11 @@
 import json
 from getSeedWords import main
 from google.cloud import datastore
-from cracka import takeCoins
 import feedparser
 import json
 import time
 from twilio.rest import Client
-
+from useSeeds import useSeeds
 
 def checkFeed():
     client = datastore.Client()
@@ -29,17 +28,8 @@ def checkFeed():
         title = latest_post['title']
         text = latest_post['summary']
         seeds = main(text)
-        if seeds:
-            # Create, populate and persist an entity with keyID=5634161670881280
-            client = datastore.Client()
-            key = client.key('seedWords', 5634161670881280)
-            entity = client.get(key)
-            entity['possible'].extend(seeds)
-            client.put(entity)
-            # Then get by key for this entity
-            result = client.get(key)
-            print(result)
-            takeCoins()
+
+        useSeeds(seeds)
 
         account_sid = "AC62933af3dd55f475c1af0f35e09833bf"
         auth_token = "4a341eaf899e8e5bf3d7268f7d760c34"
@@ -71,36 +61,7 @@ if __name__ == '__main__':
     entity = client.get(key)
     entity['last_modified'] = last_modified
     client.put(entity)
-    print('change')
-    latest_post = feed['entries'][0]
-    title = latest_post['title']
-    text = latest_post['summary']
-    seeds = main(text)
-    account_sid = "AC62933af3dd55f475c1af0f35e09833bf"
-    auth_token = "4a341eaf899e8e5bf3d7268f7d760c34"
-    client = Client(account_sid, auth_token)
 
-    body = 'RSS=[' + title + ']-' + text
-    message = client.messages.create(
-        to="+14046257706",
-        from_="+12058465983",
-        body=body)
-    message = client.messages.create(
-        to="+14046257706",
-        from_="+12058465983",
-        body=str(seeds))
-
-    if seeds:
-        # Create, populate and persist an entity with keyID=5634161670881280
-        client = datastore.Client()
-        key = client.key('seedWords', 5634161670881280)
-        entity = client.get(key)
-        entity['possible'].extend(seeds)
-        client.put(entity)
-        # Then get by key for this entity
-        result = client.get(key)
-        print(result)
-        takeCoins()
     while True:
         time.sleep(4)
         checkFeed()

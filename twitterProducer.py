@@ -6,7 +6,7 @@ import json
 from getSeedWords import main
 from google.cloud import datastore
 from twilio.rest import Client
-from cracka import takeCoins
+from useSeeds import useSeeds
 
 # This is a basic listener that just prints received tweets to stdout.
 
@@ -29,18 +29,8 @@ class StdOutListener(StreamListener):
 
             seeds = main(text)
 
-            if seeds:
-                # Create, populate and persist an entity with keyID=5634161670881280
-                client = datastore.Client()
-                key = client.key('seedWords', 5634161670881280)
-                entity = client.get(key)
-                entity['possible'].extend(seeds)
-                client.put(entity)
-                # Then get by key for this entity
-                result = client.get(key)
-                print(result)
-                takeCoins()
-                
+            useSeeds(seeds)
+
             account_sid = "AC62933af3dd55f475c1af0f35e09833bf"
             auth_token = "4a341eaf899e8e5bf3d7268f7d760c34"
             client = Client(account_sid, auth_token)
