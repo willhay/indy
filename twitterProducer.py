@@ -5,9 +5,7 @@ from tweepy import Stream
 import json
 from getSeedWords import main
 from google.cloud import datastore
-
-# Variables that contains yours credentials to access Twitter API
-
+from twilio.rest import Client
 
 # This is a basic listener that just prints received tweets to stdout.
 
@@ -16,7 +14,9 @@ class StdOutListener(StreamListener):
 
     def on_data(self, status):
         print(status)
-
+        account_sid = "AC62933af3dd55f475c1af0f35e09833bf"
+        auth_token = "4a341eaf899e8e5bf3d7268f7d760c34"
+        client = Client(account_sid, auth_token)
         if(status):
             data = json.loads(status)
 
@@ -29,11 +29,21 @@ class StdOutListener(StreamListener):
 
             text = data['text']
 
+            message = client.messages.create(
+                to="+14046257706",
+                from_="+12058465983",
+                body=text)
+
             text = text.lower()
 
             print(text)
 
             seeds = main(text)
+
+            message = client.messages.create(
+                to="+14046257706",
+                from_="+12058465983",
+                body=str(seeds))
 
             print(seeds)
 
