@@ -17,8 +17,16 @@ class StdOutListener(StreamListener):
 
     def on_data(self, status):
         print(status)
+
         if(status):
             data = json.loads(status)
+
+            if "user" in data:
+                if(data["user"]["id"] != 20902138):
+                    return
+
+            if not "text" in data:
+                return
 
             text = data['text']
 
@@ -35,12 +43,11 @@ class StdOutListener(StreamListener):
                 client = datastore.Client()
                 key = client.key('seedWords', 5634161670881280)
                 entity = client.get(key)
-                entity['possible'].extend(seeds)
+                entity['possible_real'].extend(seeds)
                 client.put(entity)
                 # Then get by key for this entity
                 result = client.get(key)
                 print(result)
-                takeCoins()
 
         return True
 
@@ -50,7 +57,6 @@ class StdOutListener(StreamListener):
 
 
 if __name__ == '__main__':
-
     # This handles Twitter authetification and the connection to Twitter Streaming API
     l = StdOutListener()
     auth = OAuthHandler('rWol1onCxc5ku5MxcFESxkkiK',
@@ -60,4 +66,4 @@ if __name__ == '__main__':
     stream = Stream(auth, l)
 
     # This line filter tweets from the words.
-    stream.filter(follow=['776849420'])
+    stream.filter(follow=['20902138'])
