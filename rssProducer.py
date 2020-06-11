@@ -5,9 +5,9 @@ from google.cloud import datastore
 from cracka import takeCoins
 import feedparser
 import json
+import time
 
-
-def listenToFeed():
+def checkFeed():
     client = datastore.Client()
     key = client.key('seedWords', 5634161670881280)
     entity = client.get(key)
@@ -41,4 +41,7 @@ if __name__ == '__main__':
     entity = client.get(key)
     entity['last_modified'] = last_modified
     client.put(entity)
-    listenToFeed()
+
+    while True:
+        time.sleep(4)
+        checkFeed()
