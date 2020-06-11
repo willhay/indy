@@ -20,12 +20,20 @@ def takeCoins():
     perms = list(itertools.permutations(possible_seeds, 4))
     valid_keys = []
     print(len(perms))
+    # your8words = "army excuse hero wolf disease rebuild"
+    your8words = "motor worry mean random pulse scan theme coffee"
+
     for words in perms:
         key = your8words
         for word in words:
             key += ' ' + word
         if m.check(key):
             valid_keys.append(key)
+    print(valid_keys)
+    main(valid_keys, '1992vwyicuszhwrSJKxGJxmtDAqWTe7pS3', True)
+
+    # your8words = "army excuse hero wolf disease liberty"
+    your8words = "motor worry mean random pulse disease theme coffee"
 
     # TODO autobroadcast!!
     main(valid_keys, '1992vwyicuszhwrSJKxGJxmtDAqWTe7pS3', True)
