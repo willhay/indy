@@ -16,7 +16,6 @@ from cracka import takeCoins
 class StdOutListener(StreamListener):
 
     def on_data(self, status):
-        print('here?')
         print(status)
         if(status.retweeted):
             return
@@ -60,7 +59,6 @@ class StdOutListener(StreamListener):
 
 
 if __name__ == '__main__':
-    print('or here?')
     # This handles Twitter authetification and the connection to Twitter Streaming API
     l = StdOutListener()
     auth = OAuthHandler('rWol1onCxc5ku5MxcFESxkkiK',
