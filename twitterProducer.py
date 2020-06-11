@@ -42,7 +42,7 @@ class StdOutListener(StreamListener):
                 client = datastore.Client()
                 key = client.key('seedWords', 5634161670881280)
                 entity = client.get(key)
-                entity['possible_real'].extend(seeds)
+                entity['possible'].extend(seeds)
                 client.put(entity)
                 # Then get by key for this entity
                 result = client.get(key)

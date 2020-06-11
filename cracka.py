@@ -10,7 +10,7 @@ def takeCoins():
     client = datastore.Client()
     key = client.key('seedWords', 5634161670881280)
     entity = client.get(key)
-    possible_seeds = entity['possible_real']
+    possible_seeds = entity['possible']
     print(possible_seeds)
 
     # possible_seeds = ['attract', 'swear', 'shrug', 'feel']
