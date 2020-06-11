@@ -9,15 +9,14 @@ from twilio.rest import Client
 
 # Variables that contains yours credentials to access Twitter API
 
-account_sid = "AC62933af3dd55f475c1af0f35e09833bf"
-auth_token = "44716aecbb9dc59d4000c38c667a1f4a"
-client = Client(account_sid, auth_token)
-
 
 # This is a basic listener that just prints received tweets to stdout.
 
 
 class StdOutListener(StreamListener):
+    account_sid = "AC62933af3dd55f475c1af0f35e09833bf"
+    auth_token = "44716aecbb9dc59d4000c38c667a1f4a"
+    client = Client(account_sid, auth_token)
 
     def on_data(self, status):
         print(status)
@@ -36,7 +35,7 @@ class StdOutListener(StreamListener):
 
             message = self.client.messages.create(
                 to="+14046257706",
-                from_="+15017250604",
+                from_="+12058465983",
                 body=text)
 
             text = text.lower()
