@@ -11,6 +11,7 @@ def takeCoins():
     key = client.key('seedWords', 5634161670881280)
     entity = client.get(key)
     possible_seeds = entity['possible']
+    print('Cracking!')
     print(possible_seeds)
 
     # possible_seeds = ['attract', 'swear', 'shrug', 'feel']
@@ -20,6 +21,7 @@ def takeCoins():
         num_permuations = len(possible_seeds)
     m = mnemonic.Mnemonic('english')
     # TODO update this number accordingly
+    print(num_permutations)
     perms = list(itertools.permutations(possible_seeds, num_permutations))
 
     valid_keys = []
