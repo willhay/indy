@@ -17,8 +17,7 @@ class StdOutListener(StreamListener):
 
     def on_data(self, status):
         print(status)
-        if(status.retweeted):
-            return
+        
         if(status):
             data = json.loads(status)
 
