@@ -15,7 +15,7 @@ def takeCoins():
     # possible_seeds = ["attract" ,"what", "friend", "abandon"]
 
     m = mnemonic.Mnemonic('english')
-
+    # TODO update this number accordingly
     perms = list(itertools.permutations(possible_seeds, 4))
     valid_keys = []
     print(len(perms))

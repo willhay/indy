@@ -22,13 +22,10 @@ class StdOutListener(StreamListener):
             data = json.loads(status)
 
             if "user" in data:
-                print(data["user"])
                 if(data["user"]["id"] != 776849420):
-                    print(data["user"]["id"])
                     return
 
             if not "text" in data:
-                print("fail")
                 return
 
             text = data['text']
