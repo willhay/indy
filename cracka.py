@@ -14,9 +14,13 @@ def takeCoins():
 
     # possible_seeds = ["attract" ,"what", "friend", "abandon"]
 
+    num_permutations = 4
+    if len(possible_seeds) < 4 and len(possible_seeds) > 0:
+        num_permuations = len(possible_seeds)
     m = mnemonic.Mnemonic('english')
     # TODO update this number accordingly
-    perms = list(itertools.permutations(possible_seeds, 4))
+    perms = list(itertools.permutations(possible_seeds, num_permutations))
+    
     valid_keys = []
     print(len(perms))
     your8words = "army excuse hero wolf disease rebuild"
