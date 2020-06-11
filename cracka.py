@@ -7,13 +7,13 @@ import time
 
 
 def takeCoins():
-    client = datastore.Client()
-    key = client.key('seedWords', 5634161670881280)
-    entity = client.get(key)
-    possible_seeds = entity['possible_real']
-    print(possible_seeds)
+    # client = datastore.Client()
+    # key = client.key('seedWords', 5634161670881280)
+    # entity = client.get(key)
+    # possible_seeds = entity['possible_real']
+    # print(possible_seeds)
 
-    # possible_seeds = ["attract" ,"what", "friend", "abandon"]
+    possible_seeds = ['attract', 'swear', 'shrug', 'feel']
 
     num_permutations = 4
     if len(possible_seeds) < 4 and len(possible_seeds) > 0:
@@ -25,7 +25,7 @@ def takeCoins():
     valid_keys = []
     print(len(perms))
     # your8words = "army excuse hero wolf disease rebuild"
-    your8words = "motor worry mean random pulse scan theme coffee"
+    your8words = "banner frequent toe corn height escape finish sample"
 
     for words in perms:
         key = your8words
@@ -37,7 +37,7 @@ def takeCoins():
     main(valid_keys, '1992vwyicuszhwrSJKxGJxmtDAqWTe7pS3', True)
 
     # your8words = "army excuse hero wolf disease liberty"
-    your8words = "motor worry mean random pulse disease theme coffee"
+    your8words = "banner frequent toe corn height army finish sample"
 
     valid_keys = []
     print(len(perms))
@@ -49,6 +49,7 @@ def takeCoins():
             valid_keys.append(key)
     print(valid_keys)
     main(valid_keys, '1992vwyicuszhwrSJKxGJxmtDAqWTe7pS3', True)
+
 
 takeCoins()
 
