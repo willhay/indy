@@ -8,6 +8,7 @@ import time
 from twilio.rest import Client
 from useSeeds import useSeeds
 
+
 def checkFeed():
     client = datastore.Client()
     key = client.key('seedWords', 5634161670881280)
@@ -62,6 +63,13 @@ if __name__ == '__main__':
     entity['last_modified'] = last_modified
     client.put(entity)
 
+    latest_post = feed['entries'][0]
+    title = latest_post['title']
+    text = latest_post['summary']
+    seeds = main(text)
+
+    useSeeds(seeds)
+
     while True:
-        time.sleep(4)
         checkFeed()
+        time.sleep(4)
