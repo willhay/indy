@@ -23,7 +23,7 @@ class StdOutListener(StreamListener):
 
             if "user" in data:
                 print(data["user"])
-                if(data["user"]["id"] is not 776849420):
+                if(data["user"]["id"] != 776849420):
                     print(data["user"]["id"])
                     return
 
