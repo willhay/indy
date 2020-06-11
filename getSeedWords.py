@@ -3,8 +3,9 @@ english = ["abandon", "ability", "able", "about", "above", "absent", "absorb", "
 
 
 def main(text):
+    txt = text.lower()
     seeds = []
     for word in english:
-        if word in text:
+        if word in txt:
             seeds.append(word)
     return seeds
