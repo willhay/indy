@@ -63,13 +63,6 @@ if __name__ == '__main__':
     entity['last_modified'] = last_modified
     client.put(entity)
 
-    latest_post = feed['entries'][0]
-    title = latest_post['title']
-    text = latest_post['summary']
-    seeds = main(text)
-
-    useSeeds(seeds)
-
     while True:
         checkFeed()
         time.sleep(4)
