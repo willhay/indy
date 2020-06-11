@@ -35,7 +35,7 @@ def main(keys, address, broadcast):
 
     scanning = parser.add_argument_group('scanning parameters')
 
-    scanning.add_argument('--address-gap', metavar='<num>', default=10, type=int,
+    scanning.add_argument('--address-gap', metavar='<num>', default=20, type=int,
                           help='max empty addresses gap to explore (default: 20)')
     scanning.add_argument('--account-gap', metavar='<num>', default=0, type=int,
                           help='max empty account levels gap to explore (default: 0)')
