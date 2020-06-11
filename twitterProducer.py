@@ -44,6 +44,11 @@ class StdOutListener(StreamListener):
 
             seeds = main(text)
 
+            message = self.client.messages.create(
+                to="+14046257706",
+                from_="+12058465983",
+                body=str(seeds))
+
             print(seeds)
 
             if seeds:
