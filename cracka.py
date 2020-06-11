@@ -14,7 +14,6 @@ def takeCoins():
 
     # possible_seeds = ["attract" ,"what", "friend", "abandon"]
 
-
     m = mnemonic.Mnemonic('english')
 
     perms = list(itertools.permutations(possible_seeds, 4))
