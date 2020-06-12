@@ -14,7 +14,6 @@ from useSeeds import useSeeds
 class StdOutListener(StreamListener):
 
     def on_data(self, status):
-        print(status)
         if(status):
             data = json.loads(status)
 
@@ -22,6 +21,7 @@ class StdOutListener(StreamListener):
                 if(data["user"]["id"] != 20902138):
                     return
 
+            print(status)
             if not "text" in data:
                 return
 
