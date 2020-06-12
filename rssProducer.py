@@ -20,6 +20,9 @@ def checkFeed():
     # check if new version exists
     feed_update = feedparser.parse(url, modified=last_modified)
 
+    if('status' not in feed_update):
+        return
+        
     if(feed_update.status == 304):
         print('no change')
 
