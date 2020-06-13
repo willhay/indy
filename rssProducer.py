@@ -36,7 +36,7 @@ def checkFeed():
         useSeeds(seeds)
 
         account_sid = "AC62933af3dd55f475c1af0f35e09833bf"
-        auth_token = "4a341eaf899e8e5bf3d7268f7d760c34"
+        auth_token = "ff832bb8e67b6615da2194391c81459d"
         client = Client(account_sid, auth_token)
 
         body = 'RSS=[' + title + ']-' + text
