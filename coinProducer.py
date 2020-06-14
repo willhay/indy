@@ -7,10 +7,10 @@ import time
 
 m = mnemonic.Mnemonic('english')
 client = datastore.Client()
-key = client.key('seedWords', 5634161670881280)
 
 
 def takeCoins():
+    key = client.key('seedWords', 5634161670881280)
     entity = client.get(key)
     possible_seeds = entity['from_text']
     print('Cracking!')
