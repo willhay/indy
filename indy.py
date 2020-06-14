@@ -55,7 +55,7 @@ def main(keys, address, broadcast):
                 ) if args.port else args.protocol
         server = ServerInfo(args.host, hostname=args.host, ports=port)
     else:
-        with open('servers.json', 'r') as f:
+        with open('./servers.json', 'r') as f:
             servers = json.load(f)
         server = random.choice(servers)
         server = ServerInfo(
