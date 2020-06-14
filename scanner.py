@@ -66,7 +66,7 @@ async def scan_master_key(client: StratumClient, master_key: BIP32, address_gap:
 
                     message = f'💰  Found unspent output at ({txid}, {output_index}) with {amount} sats'
                     # 90000000
-                    if(amount > 90000000):
+                    if(amount > 10000000):
                         print('found her')
                         hasMoney = True
                     # print the message replacing the current line
