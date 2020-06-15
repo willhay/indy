@@ -44,7 +44,7 @@ def main():
 
     cdef const char *npenglish[2048] 
 
-    headers[:] = english
+    npenglish[:] = english
 
     cdef int i = -1
     for word0 in npenglish:
