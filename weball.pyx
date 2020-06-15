@@ -36,19 +36,23 @@ def normalize_string(txt):
     return unicodedata.normalize("NFKD", utxt)
 
 
-phrase = "banner frequent toe corn height escape finish sample attract swear"
+def main():
+    phrase = "banner frequent toe corn height escape finish sample attract swear"
 
 
-count = 0
+    count = 0
 
-missin = 12-len(phrase.split())
-i = -1
-for word0 in english:
-    i += 1
-    seeds = phrase + ' ' + word0
-    print(i)
-    for word1 in english:
-        if(check(seeds + ' ' + word1)):
-            count += 1
+    missin = 12-len(phrase.split())
+    i = -1
+    for word0 in english:
+        i += 1
+        seeds = phrase + ' ' + word0
+        print(i)
+        for word1 in english:
+            if(check(seeds + ' ' + word1)):
+                count += 1
 
-print(count)
+    print(count)
+
+if __name__ == '__main__':
+    main()
