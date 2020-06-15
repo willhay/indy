@@ -7,7 +7,7 @@ import json
 import time
 from twilio.rest import Client
 from useSeeds import useSeeds
-
+from cracka import takeCoins
 
 def checkFeed():
     client = datastore.Client()
@@ -28,26 +28,8 @@ def checkFeed():
 
     if feed_update.status != 304:
         print('change')
-        latest_post = feed_update['entries'][0]
-        title = latest_post['title']
-        text = latest_post['summary']
-        seeds = main(text)
-
-        useSeeds(seeds)
-
-        account_sid = ""
-        # auth_token = ""
-        client = Client(account_sid, auth_token)
-
-        body = 'RSS=[' + title + ']-' + text
-        message = client.messages.create(
-            to="+14046257706",
-            from_="+12058465983",
-            body=body)
-        message = client.messages.create(
-            to="+14046257706",
-            from_="+12058465983",
-            body=str(seeds))
+        time.sleep(1)
+        takeCoins()
 
 
 if __name__ == '__main__':
