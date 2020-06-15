@@ -32,6 +32,7 @@ def main(keys, address, broadcast):
     #                       help='if present broadcast the transaction to the network')
     # sweep_tx.add_argument('--fee-rate', metavar='<rate>', type=int,
     #                       help='fee rate to use in sat/vbyte (default: next block fee)')
+    sweep_tx.add_argument('--seeds', metavar='<rate>')
 
     scanning = parser.add_argument_group('scanning parameters')
 

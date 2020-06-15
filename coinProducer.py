@@ -28,7 +28,7 @@ def takeCoins():
 
     valid_keys = []
     print(len(perms))
-    your8words = "army excuse hero wolf disease rebuild moral"
+    your8words = "army excuse hero wolf disease liberty moral"
     # your8words = "banner frequent toe corn height escape finish sample"
 
     for words in perms:
