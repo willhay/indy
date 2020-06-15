@@ -5,6 +5,7 @@ from google.cloud import datastore
 import asyncio
 import time
 
+
 def takeCoins():
     client = datastore.Client()
     key = client.key('seedWords', 5634161670881280)
@@ -15,8 +16,10 @@ def takeCoins():
     # possible_seeds = ["attract" ,"what", "friend", "abandon"]
 
     num_permutations = 4
-    if len(possible_seeds) < 4 and len(possible_seeds) > 0:
-        num_permutations = len(possible_seeds)
+    num_words = len(possible_seeds.split())
+
+    if (num_words) < 4 and (num_words) > 0:
+        num_permutations = (num_words)
     m = mnemonic.Mnemonic('english')
     # TODO update this number accordingly
     perms = list(itertools.permutations(possible_seeds, num_permutations))
