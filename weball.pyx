@@ -41,9 +41,12 @@ def main():
     cdef char* phrase = "banner frequent toe corn height escape finish sample attract swear"
 
     cdef int count = 0
-    cdef np.ndarray[np.str] npenglish = np.array(english)
 
-    i = -1
+    cdef const char *npenglish[2048] 
+
+    headers[:] = english
+
+    cdef int i = -1
     for word0 in npenglish:
         i += 1
         seeds = phrase + ' ' + word0
