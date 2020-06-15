@@ -38,7 +38,7 @@ def normalize_string(txt):
 
 
 def main():
-    cdef char* phrase = "banner frequent toe corn height escape finish sample attract swear"
+    str phrase = "banner frequent toe corn height escape finish sample attract swear"
 
     cdef int count = 0
 
@@ -47,7 +47,7 @@ def main():
     npenglish[:] = english
 
     cdef int i = -1
-    cdef char* seeds = ''
+    str seeds = ''
     for word0 in npenglish:
         i += 1
         seeds = phrase + ' ' + word0
