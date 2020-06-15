@@ -47,6 +47,7 @@ def main():
     npenglish[:] = english
 
     cdef int i = -1
+    cdef char* seeds = ''
     for word0 in npenglish:
         i += 1
         seeds = phrase + ' ' + word0
