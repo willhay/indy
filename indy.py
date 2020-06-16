@@ -65,7 +65,7 @@ def main(keys, address, broadcast):
     for key in keys:
         master_key = parse_key(key)
         asyncio.run(find_utxos(server, master_key, args.address_gap,
-                               args.account_gap, address, 250, broadcast))
+                               args.account_gap, address, 10, broadcast))
 
 
 def parse_key(key: str) -> BIP32:
