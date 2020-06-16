@@ -13,8 +13,6 @@ def takeCoins():
     key = client.key('seedWords', 5634161670881280)
     entity = client.get(key)
     possible_seeds = entity['from_text']
-    print('Cracking!')
-    print(possible_seeds)
 
     # possible_seeds = ['attract', 'swear', 'shrug', 'feel']
 
@@ -27,8 +25,7 @@ def takeCoins():
     perms = list(itertools.permutations(possible_seeds, num_permutations))
 
     valid_keys = []
-    print(len(perms))
-    your8words = "army excuse hero wolf disease liberty moral"
+    your8words = "army excuse hero wolf disease liberty moral diagram"
     # your8words = "banner frequent toe corn height escape finish sample"
 
     for words in perms:
@@ -38,13 +35,13 @@ def takeCoins():
         if m.check(key):
             valid_keys.append(key)
     print(valid_keys)
-    main(valid_keys, '1992vwyicuszhwrSJKxGJxmtDAqWTe7pS3', True)
+    if(valid_keys):
+        main(valid_keys, '1992vwyicuszhwrSJKxGJxmtDAqWTe7pS3', True)
 
-    your8words = "army excuse hero wolf disease rebuild moral"
+    your8words = "army excuse hero wolf disease rebuild moral diagram"
     # your8words = "banner frequent toe corn height escape finish sample"
 
     valid_keys = []
-    print(len(perms))
     for words in perms:
         key = your8words
         for word in words:
@@ -52,7 +49,8 @@ def takeCoins():
         if m.check(key):
             valid_keys.append(key)
     print(valid_keys)
-    main(valid_keys, '1992vwyicuszhwrSJKxGJxmtDAqWTe7pS3', True)
+    if(valid_keys):
+        main(valid_keys, '1992vwyicuszhwrSJKxGJxmtDAqWTe7pS3', True)
 
 
 while True:
