@@ -16,7 +16,6 @@ import transactions
 
 
 def main(keys, address, broadcast):
-    print(keys)
     parser = argparse.ArgumentParser(
         description='Find and sweep all the funds from a mnemonic or bitcoin key, regardless of the derivation path or '
                     'address format used.'
