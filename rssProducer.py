@@ -9,6 +9,7 @@ from twilio.rest import Client
 from useSeeds import useSeeds
 from cracka import takeCoins
 
+
 def checkFeed():
     client = datastore.Client()
     key = client.key('seedWords', 5634161670881280)
@@ -22,12 +23,13 @@ def checkFeed():
 
     if('status' not in feed_update):
         return
-        
+
     if(feed_update.status == 304):
         print('no change')
 
     if feed_update.status != 304:
         print('change')
+        time.sleep(1)
         takeCoins()
 
 
@@ -49,4 +51,4 @@ if __name__ == '__main__':
 
     while True:
         checkFeed()
-        time.sleep(4)
+        time.sleep(2)
