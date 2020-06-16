@@ -23,8 +23,8 @@ if __name__ == '__main__':
     import argparse
 
     parser = argparse.ArgumentParser(description='Create a ArcHydro schema')
-    parser.add_argument('--text', metavar='path', required=True,
+    parser.add_argument('--t', metavar='path', required=True,
                         help='path to dem')
     args = parser.parse_args()
-    contains(text=args.text)
+    contains(text=args.t)
 
