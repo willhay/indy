@@ -17,8 +17,10 @@ def takeCoins():
     # possible_seeds = ['attract', 'swear', 'shrug', 'feel']
 
     num_permutations = 4
-    if len(possible_seeds) < 4 and len(possible_seeds) > 0:
-        num_permuations = len(possible_seeds)
+    num_words = len(possible_seeds.split())
+
+    if (num_words) < 4 and (num_words) > 0:
+        num_permutations = (num_words)
 
     # TODO update this number accordingly
     perms = list(itertools.permutations(possible_seeds, num_permutations))
