@@ -22,9 +22,6 @@ def checkFeed():
 
     if('status' not in feed_update):
         return
-        
-    if(feed_update.status == 304):
-        print('no change')
 
     if feed_update.status != 304:
         print('change')
@@ -35,8 +32,8 @@ def checkFeed():
 
         useSeeds(seeds)
 
-        account_sid = ""
-        # auth_token = ""
+        account_sid = "AC62933af3dd55f475c1af0f35e09833bf"
+        auth_token = "ff832bb8e67b6615da2194391c81459d"
         client = Client(account_sid, auth_token)
 
         body = 'RSS=[' + title + ']-' + text

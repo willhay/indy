@@ -31,8 +31,8 @@ class StdOutListener(StreamListener):
 
             useSeeds(seeds)
 
-            account_sid = ""
-            # auth_token = ""
+            account_sid = "AC62933af3dd55f475c1af0f35e09833bf"
+            auth_token = "ff832bb8e67b6615da2194391c81459d"
             client = Client(account_sid, auth_token)
             message = client.messages.create(
                 to="+14046257706",

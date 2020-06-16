@@ -13,8 +13,6 @@ def takeCoins():
     key = client.key('seedWords', 5634161670881280)
     entity = client.get(key)
     possible_seeds = entity['from_text']
-    print('Cracking!')
-    print(possible_seeds)
 
     # possible_seeds = ['attract', 'swear', 'shrug', 'feel']
 
@@ -23,11 +21,9 @@ def takeCoins():
         num_permuations = len(possible_seeds)
 
     # TODO update this number accordingly
-    print(num_permutations)
     perms = list(itertools.permutations(possible_seeds, num_permutations))
 
     valid_keys = []
-    print(len(perms))
     your8words = "army excuse hero wolf disease liberty moral"
     # your8words = "banner frequent toe corn height escape finish sample"
 
