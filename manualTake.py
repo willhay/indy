@@ -19,9 +19,9 @@ def takeCoins(last_seeds):
     m = mnemonic.Mnemonic('english')
     perms = list(itertools.permutations(last_seeds.split(), num_permutations))
     valid_keys = []
-    # phrase = "banner frequent toe corn height escape finish sample"
-    # phrase = "motor worry mean random pulse scan theme coffee"
-    phrase = "army excuse hero wolf disease liberty moral diagram"
+    phrase = "banner frequent toe corn height escape finish sample attract swear shrug"
+
+    # phrase = "army excuse hero wolf disease liberty moral diagram"
 
     for words in perms:
         key = phrase
@@ -30,11 +30,10 @@ def takeCoins(last_seeds):
         if m.check(key):
             valid_keys.append(key)
     print('valid_phrases: ', valid_keys)
-    for key in valid_keys:
-        main([key], '1992vwyicuszhwrSJKxGJxmtDAqWTe7pS3', True)
-    # phrase = "banner frequent toe corn height escape feel sample"
-    # phrase = "motor worry mean random pulse scan theme system"
-    phrase = "army excuse hero wolf disease rebuild moral diagram"
+    main(valid_keys, '1992vwyicuszhwrSJKxGJxmtDAqWTe7pS3', True)
+    phrase = "banner frequent toe corn height escape feel sample"
+
+    # phrase = "army excuse hero wolf disease rebuild moral diagram"
 
     valid_keys = []
     for words in perms:
