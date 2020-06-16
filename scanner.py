@@ -31,8 +31,12 @@ async def scan_master_key(client: StratumClient, master_key: BIP32, address_gap:
     descriptors = set()
     utxos = []
     hasMoney = False
+    i = 0
     with tqdm(total=script_iter.total_scripts(), desc='🏃‍♀️  Searching possible addresses') as progress_bar:
         while True and not hasMoney:
+            i += 1
+            if i == 50:
+                hasMoney = True
             script = script_iter.next_script()
             if not script:
                 break
