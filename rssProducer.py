@@ -28,7 +28,6 @@ def checkFeed():
 
     if feed_update.status != 304:
         print('change')
-        time.sleep(1)
         takeCoins()
 
 

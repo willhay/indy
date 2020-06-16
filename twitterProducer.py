@@ -26,8 +26,6 @@ class StdOutListener(StreamListener):
             print(status)
             if not "text" in data:
                 return
-
-            time.sleep(1)
             takeCoins()
 
 
