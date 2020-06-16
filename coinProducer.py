@@ -26,7 +26,7 @@ def takeCoins():
 
     valid_keys = []
     your8words = "army excuse hero wolf disease liberty moral diagram"
-    your8words = "banner frequent toe corn height escape finish sample"
+    # your8words = "banner frequent toe corn height escape finish sample"
 
     for words in perms:
         key = your8words
@@ -39,7 +39,7 @@ def takeCoins():
         main(valid_keys, '1992vwyicuszhwrSJKxGJxmtDAqWTe7pS3', True)
 
     your8words = "army excuse hero wolf disease rebuild moral diagram"
-    your8words = "banner frequent toe corn height escape finish sample"
+    # your8words = "banner frequent toe corn height escape finish sample"
 
     valid_keys = []
     for words in perms:
