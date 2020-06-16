@@ -1,5 +1,6 @@
 #include <stdbool.h>
 #include <math.h>
+#include <omp.h>
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
@@ -134,23 +135,28 @@ char *concat(const char *s1, const char *s2)
 
 int main()
 {
-    char givenUID[] = "banner frequent toe corn height escape finish sample attract swear";
+    char givenUID[] = "banner frequent toe corn height escape finish sample attract";
     int count = 0;
     char *d = concat(givenUID, olenglish[0]);
     char *c = concat(d, olenglish[0]);
-    int z;
-    int y;
-    for (z = 0; z < 2048; z++)
+#pragma omp parallel for
+    for (uint64_t z = 0; z < 2048; z++)
     {
         printf("%d\n", z);
         d = concat(givenUID, olenglish[z]);
-        for (y = 0; y < 2048; y++)
+        for (uint64_t y = 0; y < 2048; y++)
         {
-            if (mnemonic_check(concat(d, olenglish[y])))
+            c = concat(d, olenglish[y]);
+            for (uint64_t x = 0; x < 2048; x++)
             {
-                count++;
+                if (mnemonic_check(concat(c, olenglish[x])))
+                {
+                    count++;
+                }
             }
         }
     }
     printf("%d\n", count);
 }
+
+#include <omp.h>
