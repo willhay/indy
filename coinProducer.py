@@ -17,7 +17,7 @@ def takeCoins():
     # possible_seeds = ['attract', 'swear', 'shrug', 'feel']
 
     num_permutations = 4
-    num_words = len(possible_seeds.split())
+    num_words = len(possible_seeds)
 
     if (num_words) < 4 and (num_words) > 0:
         num_permutations = (num_words)
