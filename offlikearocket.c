@@ -127,8 +127,8 @@ char *concat(const char *s1, const char *s2)
 {
     char *result = malloc(strlen(s1) + strlen(s2) + 1); // +1 for the null-terminator
     // in real code you would check for errors in malloc here
-    strlcpy(result, s1, strlen(s1) + strlen(s2) + 1);
-    strlcat(result, s2, strlen(s1) + strlen(s2) + 1);
+    strcpy(result, s1);
+    strcat(result, s2);
     return result;
 }
 
@@ -138,11 +138,13 @@ int main()
     int count = 0;
     char *d = concat(givenUID, olenglish[0]);
     char *c = concat(d, olenglish[0]);
-    for (int z = 0; z < 2048; z++)
+    int z;
+    int y;
+    for (z = 0; z < 2048; z++)
     {
         printf("%d\n", z);
         d = concat(givenUID, olenglish[z]);
-        for (int y = 0; y < 2048; y++)
+        for (y = 0; y < 2048; y++)
         {
             if (mnemonic_check(concat(d, olenglish[y])))
             {
