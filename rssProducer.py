@@ -9,11 +9,12 @@ from twilio.rest import Client
 from useSeeds import useSeeds
 from cracka import takeCoins
 
+googleClient = datastore.Client()
+
 
 def checkFeed():
-    client = datastore.Client()
-    key = client.key('seedWords', 5634161670881280)
-    entity = client.get(key)
+    key = googleClient.key('seedWords', 5634161670881280)
+    entity = googleClient.get(key)
     last_modified = entity['last_modified']
 
     url = 'https://alistairmilne.com/feed/'
@@ -43,11 +44,10 @@ if __name__ == '__main__':
     last_modified = feed['headers']['Last-Modified']
     print(last_modified)
 
-    client = datastore.Client()
-    key = client.key('seedWords', 5634161670881280)
-    entity = client.get(key)
+    key = googleClient.key('seedWords', 5634161670881280)
+    entity = googleClient.get(key)
     entity['last_modified'] = last_modified
-    client.put(entity)
+    googleClient.put(entity)
 
     while True:
         checkFeed()
