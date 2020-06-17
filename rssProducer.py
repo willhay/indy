@@ -8,11 +8,11 @@ import time
 from twilio.rest import Client
 from useSeeds import useSeeds
 
-googleClient = datastore.Client()
 
 def checkFeed():
-    key = googleClient.key('seedWords', 5634161670881280)
-    entity = googleClient.get(key)
+    client = datastore.Client()
+    key = client.key('seedWords', 5634161670881280)
+    entity = client.get(key)
     last_modified = entity['last_modified']
 
     url = 'https://alistairmilne.com/feed/'
@@ -57,10 +57,11 @@ if __name__ == '__main__':
     last_modified = feed['headers']['Last-Modified']
     print(last_modified)
 
-    key = googleClient.key('seedWords', 5634161670881280)
-    entity = googleClient.get(key)
+    client = datastore.Client()
+    key = client.key('seedWords', 5634161670881280)
+    entity = client.get(key)
     entity['last_modified'] = last_modified
-    googleClient.put(entity)
+    client.put(entity)
 
     while True:
         checkFeed()
